@@ -16,6 +16,15 @@ public class QuickSort {
         arr[b] = temp;
     }
 
+    public static void swap1(int[] arr, int a, int b) {
+//        arr[a] = arr[a] + arr[b];
+//        arr[b] = arr[a] - arr[b];
+//        arr[a] = arr[a] - arr[b];
+        arr[a] ^= arr[b];
+        arr[b] ^= arr[a];
+        arr[a] ^= arr[b];
+    }
+
     public static void sort(int [] arr, int low, int high){
         if (high < low) {
             return;
@@ -49,19 +58,21 @@ public class QuickSort {
     private static int getMiddleNumber(int[] arr, int low, int high) {
         int middle = low + (high - low ) / 2;
         if (arr[low] > arr[high]) {
-            swap(arr, low, high);
+            swap1(arr, low, high);
         }
         if (arr[middle] > arr[high]) {
-            swap(arr, middle, high);
+            swap1(arr, middle, high);
         }
         if (arr[middle] > arr[low]) {
-            swap(arr, middle, low);
+            swap1(arr, middle, low);
         }
         return arr[low];
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 8, 6, 4, 9, 7, 3, 1, 9, 2};
+//        int[] arr = {1, 8, 6, 4, 9, 7, 3, 1, 9, 2};
+        int[] arr = {12, 85, 25, 16, 34, 23, 49, 95, 17, 61};
+
         sort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
