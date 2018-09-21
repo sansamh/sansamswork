@@ -1,4 +1,4 @@
-package com.dongnao.demo.lock;
+package sansam.io.lock;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

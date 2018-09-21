@@ -1,4 +1,4 @@
-package com.dongnao.demo.lock;
+package sansam.io.lock;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,10 +16,10 @@ import org.slf4j.LoggerFactory;
 public class ImproveLock implements Lock {
 	private static Logger logger = LoggerFactory.getLogger(ImproveLock.class);
 
-	private static final String ZOOKEEPER_IP_PORT = "192.168.1.129:2181";
+	private static final String ZOOKEEPER_IP_PORT = "192.168.3.200:2182";
 	private static final String LOCK_PATH = "/LOCK";
 
-	private ZkClient client = new ZkClient(ZOOKEEPER_IP_PORT, 1000, 1000, new SerializableSerializer());
+	private ZkClient client = new ZkClient(ZOOKEEPER_IP_PORT, 100000, 100000, new SerializableSerializer());
 
 	private CountDownLatch cdl;
 

@@ -1,9 +1,4 @@
-package com.dongnao.demo.lock;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
+package sansam.io.lock;
 
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
@@ -11,10 +6,15 @@ import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
 public class DistributeLock implements Lock {
 	private static Logger logger = LoggerFactory.getLogger(DistributeLock.class);
 
-	private static final String ZK_IP_PORT = "192.168.1.129:2181";
+	private static final String ZK_IP_PORT = "192.168.3.200:2181";
 	private static final String LOCK_NODE = "/lock";
 
 	private ZkClient client = new ZkClient(ZK_IP_PORT);
@@ -92,4 +92,9 @@ public class DistributeLock implements Lock {
 	@Override
 	public void lockInterruptibly() throws InterruptedException {
 	}
+
+  public static void main(String[] args) {
+	  //
+      new DistributeLock().lock();
+  }
 }
