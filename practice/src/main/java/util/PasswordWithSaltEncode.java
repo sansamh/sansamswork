@@ -133,5 +133,46 @@ public class PasswordWithSaltEncode {
         List<String> generate = generate(password);
         generate.stream().forEach(x -> System.out.println(x));
         checkEquals(generate.get(0), password);
+        System.out.println(generate.get(0).length());
+
+
     }
+
+    /**
+     * list[0] - md5, list[1] - salt, list[2] - 16位password
+     *
+     * @param password
+     * @param salt
+     * @return
+     */
+    public static List<String> generateByPasswordAndSalt(String password, String salt) {
+
+        //先普通MD5加密 password.length == 24;
+        password = md5Encode(password + salt);
+        System.out.println("password.length = " + password.length());
+        //cs.length == 48
+        char[] cs = new char[password.length() + salt.length()];
+        for (int i = 0; i < cs.length; i += 4) {
+            //
+            cs[i] = password.charAt(i / 2);
+            cs[i + 2] = password.charAt(i / 2 + 1);
+
+            cs[i + 1] = salt.charAt(i / 2);
+            cs[i + 3] = salt.charAt(i / 2 + 1);
+
+        }
+        String md5 = new String(cs);
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < cs.length; i++) {
+            //
+            if (i % 3 == 0) {
+                sb.append(cs[i]);
+            }
+        }
+
+
+        return Arrays.asList(md5, salt, sb.toString());
+    }
+
 }
