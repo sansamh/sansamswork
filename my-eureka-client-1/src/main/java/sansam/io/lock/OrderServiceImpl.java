@@ -1,10 +1,10 @@
-package com.dongnao.demo.lock;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.locks.Lock;
+package sansam.io.lock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.locks.Lock;
 
 public class OrderServiceImpl implements Runnable {
 	private static OrderCodeGenerator ong = new OrderCodeGenerator();
