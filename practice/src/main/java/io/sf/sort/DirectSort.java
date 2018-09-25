@@ -1,4 +1,4 @@
-package io.sf;
+package io.sf.sort;
 
 import java.util.Arrays;
 
